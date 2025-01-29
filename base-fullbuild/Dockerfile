@@ -47,20 +47,23 @@ RUN <<EOF
         curl                \
         findmnt             \
         fuse                \
-        acl-libs            \
+        acl-dev             \
         libxxhash           \
         logrotate           \
-        lz4-libs            \
+        lz4-dev             \
         mariadb-client      \
         mariadb-connector-c \
         mongodb-tools       \
-        openssl             \
+        openssl-dev         \
         postgresql-client   \
         pkgconfig           \
         sshfs               \
         sqlite              \
         tzdata              \
-        xxhash
+        xxhash-dev          \
+        zstd-dev            \
+        gcc                 \
+        linux-headers
     apk upgrade --no-cache
 EOF
 
