@@ -1,5 +1,0 @@
---extra-index-url https://dl.cloudsmith.io/public/modem7/wheels/python/simple/
-
-borgbackup==2.0.0b14
-borgmatic[apprise]==1.9.8
-llfuse==1.5.1

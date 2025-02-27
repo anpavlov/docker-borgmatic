@@ -1,6 +1,4 @@
-# syntax = docker/dockerfile:latest
-
-FROM python:3.13.1-alpine3.21 AS base
+FROM python:3.12.9-alpine3.21 AS base
 ARG TARGETARCH
 
 LABEL maintainer='modem7'
@@ -68,13 +66,15 @@ RUN <<EOF
     apk upgrade --no-cache
 EOF
 
-COPY --link requirements.txt /
+ARG BORG_VERSION=2.0.0b14
+ARG BORGMATIC_VERSION=1.9.8
 
 RUN --mount=type=cache,id=pip,target=/root/.cache,sharing=locked \
     <<EOF
     set -xe
     python3 -m pip install -U pip
-    python3 -m pip install -Ur requirements.txt
+    python3 -m pip install -U borgbackup==${BORG_VERSION}
+    python3 -m pip install -U borgmatic==${BORGMATIC_VERSION}
     borgmatic --bash-completion > "$(pkg-config --variable=completionsdir bash-completion)"/borgmatic
 EOF
 
